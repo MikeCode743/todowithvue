@@ -5,7 +5,7 @@
         <v-icon left>
           mdi-format-list-bulleted
         </v-icon>
-        TODO LIST
+        <h3>TODO LIST</h3>
       </v-chip>
       <v-spacer />
       <v-btn color="primary" dark @click.stop="dialog = true">
@@ -54,6 +54,7 @@
               v-model="title"
               label="Title"
               name="title"
+              autofocus
               required
             ></v-text-field>
             <v-textarea
@@ -97,6 +98,7 @@
               v-model="title"
               name="title"
               label="Title"
+              autofocus
               required
             ></v-text-field>
             <v-textarea
@@ -136,30 +138,15 @@
         </v-btn>
       </template>
     </v-snackbar>
-    
   </div>
 </template>
 <script>
-
 export default {
   name: "TodoComponent",
 
   data() {
     return {
-      todoList: [
-        {
-          id: 1,
-          title: "title 1",
-          description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt saepe maiores expedita ducimus ",
-        },
-        {
-          id: 2,
-          title: "title 2",
-          description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt saepe maiores expedita ducimus ",
-        },
-      ],
+      todoList: [],
       dialog: false,
       dialogEdit: false,
       title: "",
@@ -182,14 +169,13 @@ export default {
         });
         this.title = "";
         this.description = "";
-        this.showSnackbar("Successfully created")
+        this.showSnackbar("Successfully created");
       }
     },
     deleteItem(id) {
       console.log(id);
       this.todoList = this.todoList.filter((element) => element.id != id);
-        this.showSnackbar("Delete")
-      
+      this.showSnackbar("Deleted");
     },
     edit(index) {
       this.title = this.todoList[index].title;
@@ -198,30 +184,30 @@ export default {
       this.dialogEdit = true;
     },
     editTodo() {
-        if (this.validate(this.title, this.description)) {
-            this.todoList[this.indexEdit].title = this.title;
-            this.todoList[this.indexEdit].description = this.description;
-            this.showSnackbar("successfully edited")
-        }
+      if (this.validate(this.title, this.description)) {
+        this.todoList[this.indexEdit].title = this.title;
+        this.todoList[this.indexEdit].description = this.description;
+        this.showSnackbar("successfully edited");
+      }
     },
     validate(title, description) {
       let validate = true;
-      if( title == 0 || description == 0){
-        this.showSnackbar("Title and Description Empty ")
+      if (title == 0 || description == 0) {
+        this.showSnackbar("Title and Description Empty ");
       } else if (title == 0) {
-        this.showSnackbar("Title Empty")
+        this.showSnackbar("Title Empty");
         validate = false;
       } else if (description == 0) {
-        this.showSnackbar("Description Empty")
+        this.showSnackbar("Description Empty");
 
         validate = false;
       }
       return validate;
     },
-    showSnackbar(message){
-        this.message = message;
-        this.snackbar = true;
-    }
+    showSnackbar(message) {
+      this.message = message;
+      this.snackbar = true;
+    },
   },
 };
 </script>

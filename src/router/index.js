@@ -5,22 +5,30 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
-    name: 'Home',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Home.vue')
-
+    path: "/",
+    name: "Home",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/Home.vue"),
   },
   {
-    path: '/about',
-    name: 'About',
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    path: "/about",
+    name: "About",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/About.vue"),
   },
   {
-    path: '/todo',
-    name: 'todo',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Todo.vue')
+    path: "/todo",
+    name: "Todo",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/Todo.vue"),
   },
-]
+  {
+    path: "/calendar",
+    name: "Calendar",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/Calendar.vue"),
+  },
+];
 
 const router = new VueRouter({
   mode: 'history',
